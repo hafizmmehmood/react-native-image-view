@@ -23,6 +23,14 @@ export default function createStyles({screenWidth, screenHeight}) {
             height: HEADER_HEIGHT,
             width: screenWidth,
         },
+        flash: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 99,
+            height: HEADER_HEIGHT,
+            width: screenWidth,
+        },
         imageContainer: {
             width: screenWidth,
             height: screenHeight,

@@ -828,7 +828,7 @@ export default class ImageView extends Component<PropsType, StateType> {
                             React.createElement(close, {onPress: this.close})}
                     </SafeAreaView>
                 </Animated.View>
-                <Animated.View style={[styles.header]}>
+                <Animated.View style={[styles.flash]}>
                     {renderHeader &&
                         typeof renderHeader === 'function' &&
                         images[imageIndex] &&
