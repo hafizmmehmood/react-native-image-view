@@ -72,6 +72,7 @@ type PropsType = {
     onClose: () => {},
     onImageChange: number => {},
     renderFooter: ImageType => {},
+    renderHeader: ImageType => {},
     controls: {
         close?: ComponentType<ControlType> | boolean,
         next?: ComponentType<ControlType> | boolean,
@@ -630,19 +631,33 @@ export default class ImageView extends Component<PropsType, StateType> {
     };
 
     imageInitialParams: TransitionType[];
+
     glideAlwaysTimer: ?TimeoutID;
+
     listRef: *;
+
     isScrolling: boolean;
+
     footerHeight: number;
+
     initialTouches: TouchType[];
+
     currentTouchesNum: number;
+
     doubleTapTimer: ?TimeoutID;
+
     modalAnimation: *;
+
     modalBackgroundOpacity: *;
+
     headerTranslateValue: *;
+
     footerTranslateValue: *;
+
     imageScaleValue: *;
+
     imageTranslateValue: *;
+
     panResponder: *;
 
     calculateNextTranslate(
@@ -751,7 +766,12 @@ export default class ImageView extends Component<PropsType, StateType> {
     };
 
     render(): Node {
-        const {animationType, renderFooter, backgroundColor} = this.props;
+        const {
+            animationType,
+            renderFooter,
+            renderHeader,
+            backgroundColor,
+        } = this.props;
         const {
             images,
             imageIndex,
@@ -807,6 +827,12 @@ export default class ImageView extends Component<PropsType, StateType> {
                         {!!close &&
                             React.createElement(close, {onPress: this.close})}
                     </SafeAreaView>
+                </Animated.View>
+                <Animated.View style={[styles.header]}>
+                    {renderHeader &&
+                        typeof renderHeader === 'function' &&
+                        images[imageIndex] &&
+                        renderHeader(images[imageIndex])}
                 </Animated.View>
                 <FlatList
                     horizontal
